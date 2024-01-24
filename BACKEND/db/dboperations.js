@@ -6,7 +6,7 @@ let pool = mysql.createPool(config);
 //Összes adat. (GET http://localhost/termekek)
 async function selectTermekek() {
     return new Promise((resolve, reject) => {
-        pool.query('SELECT * FROM termekek', (error, elements) => {
+        pool.query('SELECT * FROM test1', (error, elements) => {
             if (error) {
                 return reject(error);
             }
