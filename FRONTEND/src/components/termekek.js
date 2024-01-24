@@ -1,10 +1,23 @@
-import react, {useState, useEffect} from 'react';
-import data from '../services/TermekekService';
+import React, {useState, useEffect} from 'react';
+import TermekekService from '../services/TermekekService';
 
 export default function Termekek(){
+    const[data, setData]=useState([]);
+
+    function frissit(){
+        TermekekService.getAll()
+        .then(response=>{
+            setData(response.data);
+        })
+        .catch(error=>console.log(error));
+
+    }
+    useEffect(()=>{
+        frissit();
+    },[]);
     return(
         <>
-        <thead>
+        <table>
             <tr>
                 <th>id</th>
                 <th>Termék Neve</th>
@@ -14,18 +27,18 @@ export default function Termekek(){
                 <th>Termék Ár</th>
             </tr>
             {
-                data.map((termekek)=>(
+                data.map(termekek=>(
                     <tr>
                         <td>{termekek.termek_id}</td>
                         <td>{termekek.termek_nev}</td>
-                        <td>{termekek.kateg_id}</td>
+                        <td>{termekek.kateg_nev}</td>
                         <td>{termekek.mennyiség}</td>
-                        <td>{termekek.mertek_id}</td>
-                        <td>{termekek.termak_ar}</td>
+                        <td>{termekek.mertek_nev}</td>
+                        <td>{termekek.termek_ar}</td>
                     </tr>
                 ))
             }
-        </thead>
+        </table>
         </>
-    )
+    );
 }
