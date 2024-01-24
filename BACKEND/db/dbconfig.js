@@ -1,9 +1,9 @@
 const config = {
     connectionLimit: 10,
-    user: 'user',
-    password: 'user',
+    user: 'root',
+    password: 'root',
     host: 'localhost',
-    database: 'webstore',
+    database: 'etterem',
     port: 3306,
     dateStrings: true,
 };
